@@ -1,10 +1,13 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FileText, Menu, X } from "lucide-react";
 import { navigation, profile } from "@/data/profile";
+import { useNavigationIndicator } from "./use-navigation-indicator";
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#about");
+  const navRef = useRef<HTMLElement>(null);
+  useNavigationIndicator(navRef, active, open);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -27,17 +30,22 @@ export function SiteHeader() {
           lalit<span>.dev</span>
         </a>
         <nav
+          ref={navRef}
           id="main-nav"
           className={open ? "navigation is-open" : "navigation"}
           aria-label="Main navigation"
         >
+          <span className="nav-indicator" aria-hidden="true" />
           {navigation.map((item) => (
             <a
               className={active === item.href ? "active" : ""}
               aria-current={active === item.href ? "location" : undefined}
               key={item.href}
               href={item.href}
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setActive(item.href);
+                setOpen(false);
+              }}
             >
               {item.label}
             </a>

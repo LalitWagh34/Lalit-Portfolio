@@ -5,6 +5,7 @@ import "./scrollbars.css";
 import "./showcase.css";
 import "./project-tilt.css";
 import "./project-cards.css";
+import "./interactions.css";
 export const metadata: Metadata = {
   title: "Lalit Wagh — Developer & Builder",
   description:

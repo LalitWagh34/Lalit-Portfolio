@@ -8,6 +8,7 @@ import { SectionHeading, Tags } from "./ui";
 import { ProjectVisual } from "./project-visual";
 import { ProjectDialog } from "./project-dialog";
 import { TiltCard } from "./tilt-card";
+import { AnimatedProjectGrid } from "./animated-project-grid";
 const filters = ["All projects", "Full-stack", "AI & systems"] as const;
 function ProjectCard({
   project,
@@ -107,7 +108,7 @@ export function ProjectsSection() {
           All repositories <ArrowUpRight size={14} />
         </a>
       </div>
-      <div className="projects-grid">
+      <AnimatedProjectGrid filterKey={filter}>
         {visible.map((project) => (
           <ProjectCard
             key={project.id}
@@ -115,7 +116,7 @@ export function ProjectsSection() {
             onOpen={setSelected}
           />
         ))}
-      </div>
+      </AnimatedProjectGrid>
       <ProjectDialog project={selected} onClose={() => setSelected(null)} />
     </section>
   );
