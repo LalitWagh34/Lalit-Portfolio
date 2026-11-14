@@ -23,7 +23,7 @@ export function Hero() {
           Engineering student at MANIT Bhopal. 
         </p>
         <p>
-          I build full-stack applications, backend systems, real-time applications, and AI-powered products. My interests lies in AI —Exploring <strong>System design</strong>,<strong>Machine learning</strong>, and <strong>LLMs</strong>.    
+          I build full-stack applications, backend systems, real-time applications, and AI-powered products. My interests lie in Full Stack Systems,  AI , particularly <strong>System design</strong>,<strong>Machine learning</strong>, and <strong>LLMs</strong>.    
           
           
         </p>
