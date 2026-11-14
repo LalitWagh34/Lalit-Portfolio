@@ -12,11 +12,13 @@ export type Project = {
   challenge: string;
   period: string;
   live?: string;
+  screenshot?: string;
   decision: string;
 };
 export const projects: Project[] = [
   {
     id: "intervue",
+    screenshot: "/skills/intervue.png",
     number: "01",
     name: "Intervue",
     category: "Full-stack · Real-time",
@@ -66,6 +68,7 @@ export const projects: Project[] = [
   },
   {
     id: "applytrack",
+    screenshot: "/skills/applytrack.png",
     number: "03",
     name: "ApplyTrack",
     category: "Full-stack · Productivity",

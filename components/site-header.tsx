@@ -50,7 +50,7 @@ export function SiteHeader() {
           rel="noreferrer"
         >
           <FileText size={16} />
-          <span>Résumé</span>
+          <span>Resume</span>
         </a>
         <button
           className="icon-button menu-toggle"

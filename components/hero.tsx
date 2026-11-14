@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowDown, Github, Linkedin, MapPin } from "lucide-react";
 import { profile } from "@/data/profile";
 import { LinkButton } from "./ui";
@@ -19,17 +20,16 @@ export function Hero() {
         </div>
         <p>
           Hi, I’m <strong>{profile.name}</strong> — an M.Tech Software
-          Engineering student. I build useful products and enjoy understanding
-          the systems beneath them.
+          Engineering student at MANIT Bhopal. 
         </p>
         <p>
-          From real-time coding arenas to vector search engines, my work brings
-          together <strong>full-stack engineering</strong>, thoughtful
-          interfaces, and <strong>practical AI.</strong>
+          I build full-stack applications, backend systems, real-time applications, and AI-powered products. My interests lies in AI —Exploring <strong>System design</strong>,<strong>Machine learning</strong>, and <strong>LLMs</strong>.    
+          
+          
         </p>
         <div className="hero-actions">
           <LinkButton external href={profile.resume}>
-            View résumé
+            View resume
           </LinkButton>
           <LinkButton secondary href="#contact">
             Let’s connect
@@ -52,6 +52,16 @@ export function Hero() {
           >
             <Linkedin size={18} />
           </a>
+          <a
+            className="leetcode-link"
+            href={profile.leetcode}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LeetCode profile"
+          >
+            <img src="/skills/leetcode.svg" alt="" width={19} height={19} />
+            <span>LeetCode</span>
+          </a>
           <span />
           <small>
             <MapPin size={13} />
@@ -62,7 +72,7 @@ export function Hero() {
       <div className="hero-visual">
         <SpatialScene />
         <div className="hero-profile-chip">
-          <img src={profile.avatar} alt="" width={38} height={38} />
+          <Image src={profile.avatar} alt="Lalit Wagh" width={56} height={56} />
           <span>
             Lalit Wagh<small>Software engineer · builder</small>
           </span>

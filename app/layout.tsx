@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./typography.css";
 import "./scrollbars.css";
+import "./showcase.css";
 export const metadata: Metadata = {
   title: "Lalit Wagh — Developer & Builder",
   description:

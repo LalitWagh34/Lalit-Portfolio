@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight, Github } from "lucide-react";
 import { projects, type Project } from "@/data/projects";
@@ -21,7 +22,20 @@ function ProjectCard({
         onClick={() => onOpen(project)}
         aria-label={"Explore " + project.name}
       >
-        <ProjectVisual kind={project.id} />
+        {project.screenshot ? (
+          <div className="project-screenshot">
+            <Image
+              src={project.screenshot}
+              alt={project.name + " application screenshot"}
+              width={1920}
+              height={1140}
+              sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 360px"
+            />
+            <span>Actual product / {project.name}</span>
+          </div>
+        ) : (
+          <ProjectVisual kind={project.id} />
+        )}
         <span className="preview-arrow">
           <ArrowUpRight size={20} />
         </span>
@@ -119,8 +133,8 @@ export function ProjectsSection() {
         ))}
       </div>
       <p className="visual-disclosure">
-        Project previews are original interface studies. Explore the
-        repositories for the actual implementations.
+        Intervue and ApplyTrack show actual product screenshots. The search
+        engine preview is an illustrative visualization.
       </p>
       <ProjectDialog
         project={selected}

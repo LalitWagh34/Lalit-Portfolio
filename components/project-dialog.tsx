@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import type { Project } from "@/data/projects";
@@ -91,6 +92,16 @@ export function ProjectDialog({
           >
             {tab === "Overview" ? (
               <>
+                {project.screenshot && (
+                  <Image
+                    className="dialog-screenshot"
+                    src={project.screenshot}
+                    alt={project.name + " application screenshot"}
+                    width={1920}
+                    height={1140}
+                    sizes="(max-width: 850px) 90vw, 780px"
+                  />
+                )}
                 <p>{project.detail}</p>
                 <Tags items={project.tags} />
                 <h3 className="detail-heading">What I built</h3>
@@ -113,14 +124,16 @@ export function ProjectDialog({
               <ArchitectureDiagram projectId={project.id} />
             )}
           </div>
-          {project.live && (
-            <LinkButton external secondary href={project.live}>
-              Open live app
+          <div style={{ display: "flex", gap: "1rem" }}>
+            {project.live && (
+              <LinkButton external secondary href={project.live}>
+                Open live app
+              </LinkButton>
+            )}{" "}
+            <LinkButton external href={profile.github + "/" + project.repo}>
+              View source code
             </LinkButton>
-          )}{" "}
-          <LinkButton external href={profile.github + "/" + project.repo}>
-            View source code
-          </LinkButton>
+          </div>
         </div>
       )}
     </dialog>

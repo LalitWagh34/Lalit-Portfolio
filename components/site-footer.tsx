@@ -29,6 +29,14 @@ export function SiteFooter() {
         >
           <Linkedin size={18} />
         </a>
+        <a
+          aria-label="LeetCode profile"
+          href={profile.leetcode}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img src="/skills/leetcode.svg" alt="" width={19} height={19} />
+        </a>
         <a aria-label="Email" href={"mailto:" + profile.email}>
           <Mail size={18} />
         </a>

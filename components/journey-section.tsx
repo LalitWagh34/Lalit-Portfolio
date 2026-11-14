@@ -1,5 +1,6 @@
 import { GraduationCap, Code2, Trophy, ArrowUpRight } from "lucide-react";
 import { profile } from "@/data/profile";
+import Image from "next/image";
 import { SectionHeading } from "./ui";
 const steps = [
   {
@@ -31,6 +32,19 @@ export function JourneySection() {
   return (
     <section className="section container journey-section" id="journey">
       <div className="journey-intro">
+        <div className="journey-portrait">
+          <Image
+            src={profile.avatar}
+            alt="Lalit Wagh"
+            width={120}
+            height={120}
+            sizes="120px"
+          />
+          <div>
+            <strong>{profile.name}</strong>
+            <span>M.Tech · MANIT Bhopal</span>
+          </div>
+        </div>
         <SectionHeading
           eyebrow="03 / THE JOURNEY"
           title="Strong foundations. A builder’s mindset."
@@ -57,7 +71,16 @@ export function JourneySection() {
           target="_blank"
           rel="noreferrer"
         >
-          Read my full résumé <ArrowUpRight size={15} />
+          Read my full resume <ArrowUpRight size={15} />
+        </a>
+        <br />
+        <a
+          className="inline-link leetcode-journey"
+          href={profile.leetcode}
+          target="_blank"
+          rel="noreferrer"
+        >
+          See my problem solving on LeetCode <ArrowUpRight size={15} />
         </a>
       </div>
       <div className="journey-timeline">

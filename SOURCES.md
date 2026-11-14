@@ -27,3 +27,13 @@ Charcoal surfaces with cyan, mint, amber, and rose role accents. The hero uses C
 - `data/architectures.ts`: diagram nodes, directed connections, explanations, source references.
 - `components/spatial-scene.tsx`: decorative interactive 3D scene.
 - `components/architecture-diagram.tsx`: keyboard-selectable SVG nodes with a text alternative and evidence links.
+
+## Supplied screenshots and interactive stack
+
+Intervue and ApplyTrack previews now use the supplied `public/skills/intervue.png` and `public/skills/applytrack.png`. The search-engine preview remains illustrative. The supplied `mainpicture.jpg` replaces the earlier GitHub avatar and appears in the hero and journey section.
+
+LeetCode links point to the user-supplied https://leetcode.com/u/Lalit2804/; no live rating or solved count is inferred from it.
+
+`data/scene.ts` holds the technologies revealed by each interactive 3D layer. Interface includes React, Next.js, TypeScript, and Tailwind CSS. Systems includes the requested Node.js, Bun, PostgreSQL, MySQL, Redis, and Hono. Intelligence includes Machine Learning, LLM Integration, LangGraph, Vector Search, HNSW, and RAG, matching the supplied skills and inspected search-system repository. LangChain is not claimed without supporting project evidence.
+
+Technology clouds reveal on surface hover, keyboard focus, or control selection. Touch controls provide the same content. Escape clears the selected layer. Reduced-motion mode reveals the badges statically.

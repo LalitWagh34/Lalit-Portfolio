@@ -1,0 +1,390 @@
+/* Supplied product screenshots retain their full framing. */
+.project-screenshot {
+  height: 210px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: #10151b;
+  overflow: hidden;
+}
+.project-screenshot > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+.project-preview:hover .project-screenshot > img {
+  transform: scale(1.035);
+}
+.project-screenshot > span {
+  position: absolute;
+  left: 12px;
+  bottom: 9px;
+  border: 1px solid #ffffff18;
+  background: #111719df;
+  color: #c7d7d1;
+  border-radius: 4px;
+  padding: 4px 7px;
+  font-size: 9px;
+  backdrop-filter: blur(8px);
+}
+.dialog-screenshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  margin-bottom: 24px;
+}
+.leetcode-link {
+  gap: 7px;
+  color: #e7bd79;
+}
+.hero-socials > .leetcode-link {
+  display: inline-flex;
+  font-size: 13px;
+}
+.journey-portrait {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+.journey-portrait > img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  object-position: 48% 40%;
+  border-radius: 16px;
+  border: 1px solid #d2dfd026;
+}
+.journey-portrait strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 19px;
+  font-weight: 600;
+}
+.journey-portrait span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.leetcode-journey {
+  color: #e3bc84;
+}
+.hero-visual {
+  height: 470px;
+}
+.hero-profile-chip {
+  bottom: -64px;
+  padding: 8px 18px 8px 8px;
+}
+.hero-profile-chip > img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  object-position: 48% 40%;
+}
+.scene-layer-controls {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 9px;
+  background: #181e1edb;
+  border: 1px solid #b5d4c51c;
+  z-index: 10;
+}
+.scene-layer-controls button {
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #a8b5af;
+  min-height: 36px;
+}
+.scene-layer-controls button[aria-pressed="true"] {
+  background: #9bd0bd18;
+  color: #d1e8db;
+}
+.scene-layer-controls button:last-child[aria-pressed="true"] {
+  color: var(--amber);
+  background: #ecc28f12;
+}
+.scene-assembly {
+  z-index: 1;
+}
+.layer-top {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    box-shadow 0.3s,
+    border-color 0.3s,
+    background 0.3s;
+}
+.layer-top:focus-visible {
+  outline: 2px solid var(--layer-color);
+  outline-offset: 5px;
+}
+.layer-top > strong {
+  display: block;
+}
+.layer-circuit {
+  pointer-events: none;
+}
+.layer-circuit:before {
+  display: block;
+}
+.spatial-layer[data-active="true"] {
+  animation: none;
+  transform: translateZ(calc(var(--depth) + 22px));
+}
+.spatial-layer[data-active="true"] .layer-top {
+  border-color: var(--layer-color);
+  background: linear-gradient(
+    130deg,
+    color-mix(in srgb, var(--layer-color) 24%, #172022),
+    #182022ed
+  );
+  box-shadow:
+    0 0 35px color-mix(in srgb, var(--layer-color) 16%, transparent),
+    inset 0 0 25px color-mix(in srgb, var(--layer-color) 10%, transparent);
+}
+.spatial-scene[data-active-layer]:not([data-active-layer="none"])
+  .spatial-layer[data-active="false"]
+  .layer-top {
+  opacity: 0.65;
+}
+.scene-tech-cloud {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+.scatter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  inset: 0;
+}
+.scatter-position {
+  position: absolute;
+  left: 50%;
+  top: 43%;
+  transform: translate(
+      calc(-50% + var(--scatter-x)),
+      calc(-50% + var(--scatter-y))
+    )
+    rotate(var(--scatter-rotate));
+  animation: technology-scatter 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--scatter-delay);
+}
+.tech-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 11px;
+  border: 1px solid #b5d7d145;
+  background: #172021f2;
+  border-radius: 8px;
+  color: #e0ece7;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  box-shadow: 0 8px 23px #0006;
+  backdrop-filter: blur(12px);
+}
+.tech-chip .skill-badge-icon {
+  width: 22px;
+  height: 23px;
+  flex-basis: 22px;
+  color: var(--cyan);
+}
+.tech-chip .skill-badge-icon img {
+  width: 21px;
+  height: 21px;
+}
+.scatter-systems .tech-chip {
+  border-color: #a1d6b64d;
+}
+.scatter-intelligence .tech-chip {
+  border-color: #ecc28f4d;
+  color: #f0dfc4;
+}
+.scatter-intelligence .skill-badge-icon {
+  color: var(--amber);
+}
+@keyframes technology-scatter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(0deg) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: translate(
+        calc(-50% + var(--scatter-x)),
+        calc(-50% + var(--scatter-y))
+      )
+      rotate(var(--scatter-rotate)) scale(1);
+  }
+}
+@media (max-width: 1000px) {
+  .hero-visual {
+    height: 440px;
+  }
+  .scatter-position {
+    --spread-scale: 0.85;
+    transform: translate(
+        calc(-50% + var(--scatter-x) * 0.85),
+        calc(-50% + var(--scatter-y))
+      )
+      rotate(var(--scatter-rotate));
+  }
+}
+@media (max-width: 760px) {
+  .hero-visual {
+    height: 440px;
+    margin-bottom: 90px;
+  }
+  .project-screenshot {
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+  .hero-profile-chip {
+    bottom: -75px;
+  }
+  .coordinate-top {
+    top: 5px;
+  }
+  .scene-layer-controls {
+    bottom: 0;
+  }
+}
+@media (max-width: 440px) {
+  .hero-visual {
+    height: 420px;
+  }
+  .hero-socials {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .hero-socials > .leetcode-link {
+    font-size: 12px;
+  }
+  .hero-socials small {
+    font-size: 11px;
+  }
+  .tech-chip {
+    padding: 8px;
+    font-size: 10px;
+    gap: 5px;
+  }
+  .tech-chip .skill-badge-icon {
+    flex-basis: 19px;
+    width: 19px;
+  }
+  .tech-chip .skill-badge-icon img {
+    width: 18px;
+    height: 18px;
+  }
+  .scene-layer-controls button {
+    font-size: 11px;
+    padding-inline: 8px;
+  }
+  .journey-portrait > img {
+    width: 88px;
+    height: 88px;
+  }
+  .journey-portrait strong {
+    font-size: 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scatter-position {
+    animation: none;
+  }
+  .layer-top,
+  .project-screenshot > img {
+    transition: none;
+  }
+  .project-preview:hover .project-screenshot > img {
+    transform: none;
+  }
+}
+.hero-profile-chip {
+  width: max-content;
+  max-width: calc(100% - 16px);
+}
+.hero-profile-chip > img {
+  flex-shrink: 0;
+}
+
+/* Soft color grading keeps the charcoal base visible between sections. */
+body {
+  background:
+    radial-gradient(
+      ellipse 850px 600px at 95% 250px,
+      #508eab1c,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 750px 500px at 5% 800px,
+      #71a88a13,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 850px 650px at 95% 1700px,
+      #b68a5912,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 700px 600px at 5% 2900px,
+      #598ca31a,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 850px 600px at 90% 3900px,
+      #8b6a9c12,
+      transparent 75%
+    ),
+    var(--bg);
+}
+.skills-section {
+  background:
+    radial-gradient(ellipse at 0% 20%, #75b5bd0c, transparent 65%),
+    radial-gradient(ellipse at 100% 90%, #c6a0720b, transparent 60%), #141617c9;
+}
+.contact-card {
+  background:
+    radial-gradient(ellipse at 0% 100%, #78bac024, transparent 65%),
+    radial-gradient(ellipse at 100% 100%, #c6a07224, transparent 65%), #191d1df0;
+}
+.wordmark {
+  color: #b4dcd2;
+  background: linear-gradient(110deg, #8fd7ee 0%, #b4e0c4 48%, #e9bf8e 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.wordmark span {
+  background: none;
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+}
+.wordmark:hover {
+  filter: brightness(1.12);
+}
+@media (forced-colors: active) {
+  .wordmark,
+  .wordmark span {
+    background: none;
+    color: LinkText;
+    -webkit-text-fill-color: currentColor;
+  }
+}

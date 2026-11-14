@@ -7,7 +7,8 @@ export const profile = {
   email: "lalitwagh2804@gmail.com",
   github: "https://github.com/LalitWagh34",
   linkedin: "https://www.linkedin.com/in/lalit-wagh-862721248/",
-  avatar: "/profile.jpg",
+  avatar: "/skills/mainpicture.jpg",
+  leetcode: "https://leetcode.com/u/Lalit2804/",
 };
 export const navigation = [
   { label: "About", href: "#about" },
