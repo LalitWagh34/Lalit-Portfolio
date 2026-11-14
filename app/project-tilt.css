@@ -1,0 +1,82 @@
+/* The shell stays stationary; only the card surface moves in perspective. */
+.project-card-shell {
+  min-width: 0;
+  perspective: 1400px;
+  position: relative;
+}
+.project-card-shell:has([data-tilting="true"]) {
+  z-index: 2;
+}
+.project-card-shell .project-card {
+  --card-rotate-x: 0deg;
+  --card-rotate-y: 0deg;
+  --card-light-x: 50%;
+  --card-light-y: 50%;
+  position: relative;
+  overflow: visible;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) rotateY(0deg) translateY(0);
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.4s ease,
+    border-color 0.3s ease;
+  transition-delay: 0s;
+}
+.project-card-shell .project-card[data-tilting="true"] {
+  transform: rotateX(var(--card-rotate-x)) rotateY(var(--card-rotate-y))
+    translateY(-8px);
+  border-color: color-mix(in srgb, var(--project-accent) 48%, transparent);
+  box-shadow:
+    0 28px 50px -18px #0009,
+    0 8px 22px -14px color-mix(in srgb, var(--project-accent) 25%, transparent);
+  transition-duration: 0.14s;
+}
+.project-card-shell .project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--card-light-x) var(--card-light-y),
+    color-mix(in srgb, var(--project-accent) 13%, transparent),
+    transparent 60%
+  );
+  opacity: 0;
+  transform: translateZ(32px);
+  transition: opacity 0.3s ease;
+}
+.project-card-shell .project-card[data-tilting="true"]::after {
+  opacity: 1;
+}
+.project-card-shell .project-preview {
+  border-radius: 12px 12px 0 0;
+}
+.project-card-shell .project-preview,
+.project-card-shell .project-body {
+  transform: translateZ(0);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.project-card-shell .project-card[data-tilting="true"] .project-preview {
+  transform: translateZ(10px);
+}
+.project-card-shell .project-card[data-tilting="true"] .project-body {
+  transform: translateZ(18px);
+}
+.project-card-shell .project-card:focus-within {
+  border-color: color-mix(in srgb, var(--project-accent) 50%, transparent);
+}
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .project-card-shell .project-card,
+  .project-card-shell .project-card[data-tilting="true"],
+  .project-card-shell .project-preview,
+  .project-card-shell .project-body,
+  .project-card-shell .project-card[data-tilting="true"] .project-preview,
+  .project-card-shell .project-card[data-tilting="true"] .project-body {
+    transform: none;
+    transition: none;
+  }
+  .project-card-shell .project-card::after {
+    display: none;
+  }
+}

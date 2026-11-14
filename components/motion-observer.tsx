@@ -4,7 +4,7 @@ export function MotionObserver() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const elements = document.querySelectorAll(
-      ".section-heading,.project-card,.skill-card,.journey-item,.contact-card",
+      ".section-heading,.project-card-shell,.skill-card,.journey-item,.contact-card",
     );
     const observer = new IntersectionObserver(
       (entries) => {
