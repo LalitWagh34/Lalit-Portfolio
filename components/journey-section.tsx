@@ -18,8 +18,8 @@ const steps = [
   {
     icon: Code2,
     label: "PROBLEM SOLVING",
-    title: "450+ problems. One deliberate practice.",
-    body: "450+ problems across LeetCode and Codeforces; LeetCode rating of 1657.",
+    title: "500+ problems. One deliberate practice.",
+    body: "500+ problems across LeetCode and Codeforces; LeetCode rating of 1680.",
   },
   {
     icon: Trophy,

@@ -12,8 +12,9 @@ export function ArchitectureDiagram({ projectId }: { projectId: string }) {
     <div className="architecture-diagram">
       <div className="architecture-heading">
         <Network size={15} />
-        <span>Repository-backed system map</span>
+        <span>How it works</span>
       </div>
+      <p className="architecture-summary">{graph.summary}</p>
       <p className="architecture-help">
         Select a component to explore its responsibility.
       </p>
@@ -112,14 +113,11 @@ export function ArchitectureDiagram({ projectId }: { projectId: string }) {
         </svg>
       </div>
       <div className="architecture-detail" aria-live="polite">
-        <strong>{active?.label || "How the pieces connect"}</strong>
-        <p>
-          {active?.detail ||
-            "Arrows show documented service and data flows. This diagram summarizes the repository architecture; it is not a live infrastructure monitor."}
-        </p>
+        <strong>{active?.label || "Key design choice"}</strong>
+        <p>{active?.detail || graph.takeaway}</p>
       </div>
       <details className="architecture-text">
-        <summary>Read the architecture as text</summary>
+        <summary>Read the flow as text</summary>
         <ul>
           {graph.edges.map((edge, i) => (
             <li key={i}>
@@ -130,7 +128,7 @@ export function ArchitectureDiagram({ projectId }: { projectId: string }) {
         </ul>
       </details>
       <div className="architecture-sources">
-        <span>Source references</span>
+        <span>Explore the technical details</span>
         {graph.sources.map((source) => (
           <a
             key={source.url}

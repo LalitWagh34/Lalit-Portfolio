@@ -388,3 +388,21 @@ body {
     -webkit-text-fill-color: currentColor;
   }
 }
+
+.architecture-summary {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 14px 0;
+}
+.architecture-canvas .architecture-node > .node-sublabel {
+  font-size: 9px;
+}
+.dialog-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.dialog-panel .dialog-screenshot {
+  margin: 24px 0 0;
+}

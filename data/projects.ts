@@ -18,78 +18,75 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "intervue",
-    screenshot: "/skills/intervue.png",
     number: "01",
     name: "Intervue",
     category: "Full-stack · Real-time",
-    title: "A better place to prepare. Together.",
+    title: "Interview practice, feedback, and revision in one place.",
     description:
-      "An all-in-one technical interview platform bringing AI mock interviews, real-time coding battles, and interview prep into one workspace.",
+      "An interview-preparation platform combining AI mock interviews, live coding contests, and interactive DSA and DBMS lessons.",
+    detail:
+      "Interview preparation often separates practice, feedback, and revision. I built Intervue to bring AI interviews, coding contests, and structured learning into one workspace.",
+    features: [
+      "AI mock interviews with adaptive questions and feedback on technical accuracy, problem solving, and communication.",
+      "Live coding rooms with synchronized scores, spectator code viewing, and server-enforced contest rules.",
+      "DSA and DBMS lessons with step-by-step visualizers and spaced-repetition quizzes to reinforce concepts.",
+    ],
+    challenge:
+      "Keeping contest scores and penalties consistent when multiple participants send updates at the same time.",
+    decision:
+      "The server controls contest state, so clients cannot decide results independently. PostgreSQL stores results and learning progress; Groq powers interview questions and feedback.",
     tags: ["React", "Hono", "Bun", "PostgreSQL", "Groq"],
     repo: "intervue",
     period: "July 2026 - Present",
     live: "https://intervue-mu.vercel.app",
-    features: [
-      "Adaptive AI mock interviews with structured rubric feedback",
-      "Authoritative multiplayer rooms, live standings, and spectator code streaming",
-      "Company prep kits, curated DSA sheets, and coding-profile progress sync",
-    ],
-    challenge:
-      "Keeping room state, submissions, and anti-cheat penalties consistent while clients exchange live events.",
-    detail:
-      "Intervue brings several parts of technical interview preparation into a shared platform: AI mock interviews, a real-time 1v1 coding arena, preparation kits, and unified coding profiles.",
-
-    decision:
-      "Room state is server-authoritative: the Hono/Bun server authenticates WebSocket upgrades and applies room decisions centrally. PostgreSQL persists participants, submissions, and audit records.",
+    screenshot: "/skills/intervue.png",
   },
   {
     id: "hnsw",
     number: "02",
     name: "HNSW Search Engine",
     category: "AI · Infrastructure",
-    title: "Under the hood of semantic search.",
+    title: "Find relevant information. Answer with supporting sources.",
     description:
-      "A vector search engine built in TypeScript, exploring HNSW indexing, hybrid retrieval, and an agentic RAG system.",
-    tags: ["TypeScript", "HNSW", "BM25", "RAG"],
-    repo: "HNSW-Vector-Search-Engine",
-    period: "Search infrastructure / AI",
+      "A custom TypeScript vector search engine paired with an AI agent that retrieves documents, checks relevance, and answers with citations.",
+    detail:
+      "Useful document answers depend on finding the right context first. I built a search engine from scratch and connected it to an agent that checks its retrieved evidence before answering.",
     features: [
-      "Custom TypeScript HNSW graph with diversity-aware pruning",
-      "Dense + BM25 retrieval fused with reciprocal rank fusion",
-      "LangGraph reasoning, bounded retries, grounding checks, and streamed citations",
+      "Implemented the HNSW approximate-nearest-neighbor index from scratch in TypeScript.",
+      "Combined semantic search with BM25 keyword matching to retrieve both meaning and exact terms.",
+      "Added a LangGraph agent that checks relevance and grounding, retries within a limit, and cites source chunks.",
     ],
     challenge:
-      "Balancing approximate retrieval quality with latency, then ensuring the reasoning loop terminates on insufficient context.",
-    detail:
-      "A search infrastructure project combining a TypeScript HNSW vector index with BM25 retrieval and reciprocal rank fusion, alongside an agentic RAG system.",
-
+      "Balancing search speed and retrieval quality, while preventing repeated reasoning loops when documents cannot answer a question.",
     decision:
-      "The in-memory HNSW graph favors retrieval speed while PostgreSQL persists document data. A separate Python service runs the LangGraph loop, keeping graph search and agent orchestration independently organized.",
+      "TypeScript handles the in-memory search index; Python handles the agent workflow. Hybrid ranking combines semantic and keyword matches, and bounded retries prevent endless reasoning loops.",
+    tags: ["TypeScript", "HNSW", "BM25", "Python", "LangGraph"],
+    repo: "HNSW-Vector-Search-Engine",
+    period: "Search infrastructure / AI",
   },
   {
     id: "applytrack",
-    screenshot: "/skills/applytrack.png",
     number: "03",
     name: "ApplyTrack",
-    category: "Full-stack · Productivity",
-    title: "Less tracking. More moving forward.",
+    category: "Full-stack · Automation",
+    title: "Track applications without maintaining a spreadsheet.",
     description:
-      "A focused job application workspace with a Kanban board and Gmail integration to keep applications and follow-ups organized.",
-    tags: ["React", "Fastify", "BullMQ", "Redis", "Prisma"],
+      "A job-application tracker that turns Gmail activity into Kanban updates and helps candidates prepare timely follow-ups.",
+    detail:
+      "Manual application tracking makes follow-ups easy to miss. I built ApplyTrack to capture Gmail application activity, organize it on a board, and help draft personalized follow-ups.",
+    features: [
+      "Connected Gmail and Google Pub/Sub to detect application activity and update the tracking board.",
+      "Processed mailbox events in background queues, with Redis deduplication and encrypted OAuth tokens.",
+      "Added AI follow-up drafts and mobile job-link capture through a progressive web app.",
+    ],
+    challenge:
+      "Handling repeated mailbox notifications without creating duplicate applications or processing email bodies.",
+    decision:
+      "Background workers handle mailbox processing outside user requests. Redis deduplicates notifications, while metadata-only Gmail access limits the email data processed.",
+    tags: ["React", "Fastify", "BullMQ", "Redis", "PostgreSQL"],
     repo: "ApplyTrack",
     period: "September - October 2026",
     live: "https://apply-track-1h5z.vercel.app/",
-    features: [
-      "Gmail metadata ingestion through Google Pub/Sub",
-      "BullMQ ingestion, watch renewal, and follow-up queues",
-      "Encrypted OAuth tokens, AI follow-up drafts, and mobile PWA capture",
-    ],
-    challenge:
-      "Handling duplicate mailbox notifications without creating duplicate application records or exposing email bodies.",
-    detail:
-      "A job application tracker with a Linear-inspired Kanban workflow, Gmail OAuth and Pub/Sub auto-tracking, and mobile share intent support.",
-
-    decision:
-      "Mailbox ingestion runs asynchronously in BullMQ. Redis locks deduplicate events, metadata-only Gmail access limits the email data processed, and OAuth tokens are encrypted at rest.",
+    screenshot: "/skills/applytrack.png",
   },
 ];

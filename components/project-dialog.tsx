@@ -92,6 +92,14 @@ export function ProjectDialog({
           >
             {tab === "Overview" ? (
               <>
+                <p>{project.detail}</p>
+                <Tags items={project.tags} />
+                <h3 className="detail-heading">Key contributions</h3>
+                <ul className="feature-list">
+                  {project.features.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
+                </ul>
                 {project.screenshot && (
                   <Image
                     className="dialog-screenshot"
@@ -102,29 +110,19 @@ export function ProjectDialog({
                     sizes="(max-width: 850px) 90vw, 780px"
                   />
                 )}
-                <p>{project.detail}</p>
-                <Tags items={project.tags} />
-                <h3 className="detail-heading">What I built</h3>
-                <ul className="feature-list">
-                  {project.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
-                  ))}
-                </ul>
-                <h3 className="detail-heading">Engineering challenge</h3>
-                <p>{project.challenge}</p>
               </>
             ) : tab === "Decisions" ? (
               <>
-                <h3 className="detail-heading">Design tradeoffs</h3>
+                <h3 className="detail-heading">Why this design</h3>
                 <p>{project.decision}</p>
-                <h3 className="detail-heading">The hard part</h3>
+                <h3 className="detail-heading">Main engineering challenge</h3>
                 <p>{project.challenge}</p>
               </>
             ) : (
               <ArchitectureDiagram projectId={project.id} />
             )}
           </div>
-          <div style={{ display: "flex", gap: "1rem" }}>
+          <div className="dialog-actions">
             {project.live && (
               <LinkButton external secondary href={project.live}>
                 Open live app

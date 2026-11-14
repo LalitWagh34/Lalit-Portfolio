@@ -37,3 +37,11 @@ LeetCode links point to the user-supplied https://leetcode.com/u/Lalit2804/; no 
 `data/scene.ts` holds the technologies revealed by each interactive 3D layer. Interface includes React, Next.js, TypeScript, and Tailwind CSS. Systems includes the requested Node.js, Bun, PostgreSQL, MySQL, Redis, and Hono. Intelligence includes Machine Learning, LLM Integration, LangGraph, Vector Search, HNSW, and RAG, matching the supplied skills and inspected search-system repository. LangChain is not claimed without supporting project evidence.
 
 Technology clouds reveal on surface hover, keyboard focus, or control selection. Touch controls provide the same content. Escape clears the selected layer. Reduced-motion mode reveals the badges statically.
+
+## Recruiter-focused project review
+
+Re-read the current GitHub documentation and compared it with portfolio copy. Intervue README blob: 9b1eedeb5d34d1dbca7188a174316eb43e5ab9ff; system-architecture.md blob: aecbf4af1542590481224f3ab8e39e78259daed8. The important addition is the Learn & Revise hub: DSA/DBMS concept lessons, interactive visualizers, recall quizzes, and spaced-repetition progress.
+
+Also re-read ApplyTrack README.md / ARCHITECTURE.md and HNSW-Vector-Search-Engine README.md. All project overviews now have a short problem/solution summary and three contributions. Detailed endpoint names, exhaustive feature lists, marketing claims, and benchmark numbers are omitted from these summaries.
+
+Architecture maps are intentionally high-level summaries: Intervue has four components, ApplyTrack five, and HNSW five. ApplyTrack groups API and background workers in one labeled backend block; HNSW groups its index and rank-fusion pipeline in the retrieval block. These groupings simplify presentation without claiming a change to the repositories. Original documentation remains linked in each diagram. This review verifies alignment with documentation, not independent runtime correctness of those projects.

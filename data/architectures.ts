@@ -8,224 +8,194 @@ export type ArchitectureNode = {
 };
 export type ArchitectureEdge = { from: string; to: string; label: string };
 export type Architecture = {
+  summary: string;
+  takeaway: string;
   nodes: ArchitectureNode[];
   edges: ArchitectureEdge[];
   sources: { label: string; url: string }[];
 };
-const source = (repo: string, path: string) => ({
-  label: path,
-  url: "https://github.com/LalitWagh34/" + repo + "/blob/main/" + path,
+const source = (repo: string, path: string, label: string) => ({
+  label,
+  url: `https://github.com/LalitWagh34/${repo}/blob/main/${path}`,
 });
 export const architectures: Record<string, Architecture> = {
   intervue: {
+    summary:
+      "The browser connects to one backend for interviews, live contests, and revision. The backend stores progress in PostgreSQL and calls Groq for AI feedback.",
+    takeaway:
+      "The backend owns contest rules and learning progress; the frontend focuses on the practice experience.",
     nodes: [
       {
         id: "web",
-        label: "React 19 + Vite",
-        sublabel: "Frontend · Vercel",
+        label: "Practice workspace",
+        sublabel: "React · interviews, contests, lessons",
         x: 350,
         y: 45,
         detail:
-          "The React SPA hosts interview, practice, and arena views. The arena client connects to /ws/rooms; interview coaching also uses SSE.",
+          "Candidates practice interviews, join coding rooms, and study DSA/DBMS through visualizers and recall quizzes.",
       },
       {
         id: "api",
-        label: "Hono on Bun",
-        sublabel: "REST / SSE / WebSocket",
+        label: "Application server",
+        sublabel: "Hono + Bun · HTTP / WebSocket",
         x: 350,
         y: 175,
         detail:
-          "The server entry point mounts API routes and authenticates the native Bun WebSocket upgrade. RoomSocketManager maintains authoritative room state.",
+          "Authenticates users, coordinates live rooms, evaluates recall sessions, and schedules concept reviews.",
       },
       {
         id: "db",
-        label: "PostgreSQL + Prisma",
-        sublabel: "Neon · persistent state",
-        x: 120,
+        label: "Progress & results",
+        sublabel: "PostgreSQL + Prisma",
+        x: 180,
         y: 315,
         detail:
-          "Shared database models persist users, sessions, rooms, participants, submissions, and interview evaluations.",
+          "Stores interview evaluations, contest submissions, lesson revisions, and spaced-repetition progress.",
       },
       {
         id: "ai",
-        label: "Groq inference",
-        sublabel: "Llama 3.3 · evaluation",
-        x: 350,
+        label: "AI interviewer",
+        sublabel: "Groq · questions and feedback",
+        x: 520,
         y: 315,
         detail:
-          "The interview and evaluation services generate adaptive questions and rubric-based feedback through Groq.",
-      },
-      {
-        id: "sync",
-        label: "Coding profiles",
-        sublabel: "LeetCode / Codeforces",
-        x: 580,
-        y: 315,
-        detail:
-          "External profile synchronization feeds progress and activity views.",
+          "Generates adaptive questions and evaluates answers using structured technical and communication criteria.",
       },
     ],
     edges: [
-      { from: "web", to: "api", label: "HTTPS + WSS /ws/rooms" },
-      { from: "api", to: "db", label: "Prisma queries" },
-      { from: "api", to: "ai", label: "Interview / evaluation" },
-      { from: "api", to: "sync", label: "Profile sync" },
+      { from: "web", to: "api", label: "Practice requests / live updates" },
+      { from: "api", to: "db", label: "Save progress" },
+      { from: "api", to: "ai", label: "Questions / evaluation" },
     ],
     sources: [
-      source("intervue", "system-architecture.md"),
-      source("intervue", "apps/server/src/index.ts"),
+      source("intervue", "README.md", "Project README"),
+      source("intervue", "system-architecture.md", "Full architecture"),
     ],
   },
   applytrack: {
+    summary:
+      "Gmail events reach the backend through Pub/Sub. Background workers update application records, while the web app displays the board and requests AI follow-up drafts.",
+    takeaway:
+      "Queues handle mailbox processing asynchronously; deduplication prevents repeated events from producing duplicate work.",
     nodes: [
       {
         id: "gmail",
-        label: "Gmail API",
-        sublabel: "users.watch · metadata",
-        x: 120,
-        y: 40,
+        label: "Mailbox events",
+        sublabel: "Gmail API + Google Pub/Sub",
+        x: 160,
+        y: 45,
         detail:
-          "Mailbox watches publish changes. Workers fetch headers and metadata, rather than email bodies.",
-      },
-      {
-        id: "pubsub",
-        label: "Google Pub/Sub",
-        sublabel: "Mailbox delta push",
-        x: 350,
-        y: 40,
-        detail:
-          "Push notifications carry mailbox changes to the verified Fastify webhook.",
+          "Gmail publishes mailbox changes through Pub/Sub. Processing reads email headers and metadata rather than bodies.",
       },
       {
         id: "web",
-        label: "React PWA",
-        sublabel: "Kanban · Share Target",
-        x: 580,
-        y: 40,
+        label: "Application board",
+        sublabel: "React · mobile PWA",
+        x: 540,
+        y: 45,
         detail:
-          "The browser client uses JWT-protected REST endpoints. Android Share Target captures job links.",
+          "Candidates view application stages, capture job links on mobile, and request follow-up drafts.",
       },
       {
-        id: "api",
-        label: "Fastify API",
-        sublabel: "JWT · webhook verification",
+        id: "backend",
+        label: "API & background jobs",
+        sublabel: "Fastify · BullMQ · Redis",
         x: 350,
         y: 175,
         detail:
-          "The webhook verifies incoming requests and dispatches mailbox jobs. API modules manage applications, profile context, and follow-up drafts.",
-      },
-      {
-        id: "queue",
-        label: "Redis + BullMQ",
-        sublabel: "Deduplication · workers",
-        x: 120,
-        y: 315,
-        detail:
-          "Redis locks deduplicate events. BullMQ runs email ingestion, watch renewal, and follow-up radar jobs.",
+          "Fastify verifies events and handles user requests. BullMQ workers process mailbox changes; Redis provides queues and deduplication locks.",
       },
       {
         id: "db",
-        label: "PostgreSQL / Prisma",
-        sublabel: "Applications · timelines",
-        x: 350,
+        label: "Application records",
+        sublabel: "PostgreSQL + Prisma",
+        x: 180,
         y: 315,
         detail:
-          "Neon PostgreSQL stores application state and timeline events. OAuth token material is encrypted with AES-256-GCM.",
+          "Stores applications, status history, and follow-up state. Stored OAuth token material is encrypted.",
       },
       {
         id: "ai",
-        label: "Groq Llama 3.3",
-        sublabel: "Follow-up drafting",
-        x: 580,
+        label: "Follow-up assistant",
+        sublabel: "Groq · personalized drafts",
+        x: 520,
         y: 315,
         detail:
-          "Profile and resume-derived context supports personalized follow-up drafts. PDF parsing is performed in memory.",
+          "Uses candidate and application context to generate follow-up drafts for the user to review.",
       },
     ],
     edges: [
-      { from: "gmail", to: "pubsub", label: "Mailbox delta" },
-      { from: "pubsub", to: "api", label: "Push webhook" },
-      { from: "web", to: "api", label: "REST + JWT" },
-      { from: "api", to: "queue", label: "Enqueue / locks" },
-      { from: "queue", to: "gmail", label: "Fetch metadata" },
-      { from: "queue", to: "db", label: "Persist updates" },
-      { from: "api", to: "db", label: "CRUD" },
-      { from: "api", to: "ai", label: "Draft context" },
+      { from: "gmail", to: "backend", label: "Mailbox notifications" },
+      { from: "web", to: "backend", label: "Board requests" },
+      { from: "backend", to: "db", label: "Update applications" },
+      { from: "backend", to: "ai", label: "Draft a follow-up" },
     ],
     sources: [
-      source("ApplyTrack", "ARCHITECTURE.md"),
-      source("ApplyTrack", "server/src/modules/webhooks/webhooks.routes.ts"),
+      source("ApplyTrack", "README.md", "Project README"),
+      source("ApplyTrack", "ARCHITECTURE.md", "Full architecture"),
     ],
   },
   hnsw: {
+    summary:
+      "Documents enter the search service. A separate agent retrieves relevant passages, checks their usefulness, and calls an LLM to produce a cited answer.",
+    takeaway:
+      "Search and reasoning are separate: hybrid retrieval finds evidence, and the agent checks it before answering.",
     nodes: [
       {
         id: "web",
-        label: "React + TypeScript",
-        sublabel: "Chat · ingestion · evaluation",
+        label: "Document chat",
+        sublabel: "React · upload and ask",
         x: 350,
-        y: 40,
+        y: 45,
         detail:
-          "The UI sends ingestion requests to the backend and streams the agent reasoning steps from the Python service.",
+          "Users ingest documents, ask questions, and inspect the source chunks cited in answers.",
       },
       {
         id: "retrieval",
-        label: "Hono retrieval API",
-        sublabel: "TypeScript · Node / Bun",
-        x: 140,
+        label: "Hybrid search",
+        sublabel: "TypeScript · HNSW + BM25",
+        x: 160,
         y: 175,
         detail:
-          "Dense HNSW retrieval and BM25 keyword search are combined using reciprocal rank fusion. The index lives in process memory.",
+          "Combines semantic vector matches and keyword matches using reciprocal rank fusion. The custom HNSW graph stays in memory.",
       },
       {
         id: "agent",
-        label: "FastAPI + LangGraph",
-        sublabel: "Python reasoning service",
-        x: 560,
+        label: "Answer & checks",
+        sublabel: "Python · FastAPI + LangGraph",
+        x: 540,
         y: 175,
         detail:
-          "The agent retrieves, grades relevance, reformulates queries, generates an answer, and checks grounding. Retries are bounded.",
-      },
-      {
-        id: "index",
-        label: "HNSW + BM25",
-        sublabel: "RRF · hybrid retrieval",
-        x: 120,
-        y: 315,
-        detail:
-          "A custom TypeScript HNSW graph finds approximate neighbors; BM25 supplies sparse matches; RRF fuses their rankings.",
+          "Retrieves context, grades relevance, generates an answer, and checks grounding. Query retries are limited.",
       },
       {
         id: "db",
-        label: "PostgreSQL / Prisma",
-        sublabel: "Documents · chunks · logs",
-        x: 350,
+        label: "Document storage",
+        sublabel: "PostgreSQL + Prisma",
+        x: 160,
         y: 315,
         detail:
-          "Persistent storage holds documents, chunks, evaluation logs, and conversation state; the graph itself is in memory.",
+          "Persists documents, chunks, and logs used by the retrieval service.",
       },
       {
         id: "llm",
-        label: "Groq / Gemini / Mock",
-        sublabel: "Provider adapter",
-        x: 580,
+        label: "Language model",
+        sublabel: "Groq / Gemini",
+        x: 540,
         y: 315,
         detail:
-          "The Python service supports live providers and an offline mock. /stream returns server-sent events for each reasoning step.",
+          "Supports relevance checks and answer generation. An offline mock provider is also available for local testing.",
       },
     ],
     edges: [
-      { from: "web", to: "retrieval", label: "Ingestion API" },
-      { from: "web", to: "agent", label: "HTTP / SSE" },
-      { from: "agent", to: "retrieval", label: "/api/retrieve" },
-      { from: "retrieval", to: "index", label: "Hybrid query" },
-      { from: "retrieval", to: "db", label: "Prisma" },
-      { from: "agent", to: "llm", label: "Reason / generate" },
+      { from: "web", to: "retrieval", label: "Ingest documents" },
+      { from: "web", to: "agent", label: "Ask a question" },
+      { from: "agent", to: "retrieval", label: "Find evidence" },
+      { from: "retrieval", to: "db", label: "Store / load chunks" },
+      { from: "agent", to: "llm", label: "Check / generate" },
     ],
     sources: [
-      source("HNSW-Vector-Search-Engine", "README.md"),
-      source("HNSW-Vector-Search-Engine", "agent-service/server.py"),
-      source("HNSW-Vector-Search-Engine", "backend-api/package.json"),
+      source("HNSW-Vector-Search-Engine", "README.md", "README & architecture"),
     ],
   },
 };
