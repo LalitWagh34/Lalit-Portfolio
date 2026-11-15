@@ -54,7 +54,7 @@ h1 > span,
 .contact-card h2 > span {
   background: none;
   -webkit-text-fill-color: currentColor;
-  color: #acd6c5;
+  color: #bdbbb2;
 }
 .wordmark span {
   background: none;
@@ -198,7 +198,7 @@ h1 > span,
 }
 .skill-group-card {
   padding: 24px;
-  background: #1b1e20;
+  background: var(--surface);
 }
 .skill-group-heading h3 {
   font-size: 18px;

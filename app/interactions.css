@@ -15,9 +15,9 @@
   width: var(--indicator-width, 0px);
   height: var(--indicator-height, 0px);
   transform: translate(var(--indicator-x, 0px), var(--indicator-y, 0px));
-  border: 1px solid #b4dbc817;
+  border: 1px solid #ffffff14;
   border-radius: 999px;
-  background: linear-gradient(115deg, #a9d9ca1e, #8fd7ee12);
+  background: #ffffff0a;
   pointer-events: none;
   opacity: 0;
 }

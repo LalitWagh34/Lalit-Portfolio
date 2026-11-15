@@ -1486,53 +1486,50 @@ h3 {
   }
 }
 
-/* Charcoal canvas and a shared spectral accent system. */
+/* Matte charcoal surfaces with restrained, desaturated accents. */
 :root {
-  --bg: #101112;
-  --surface: #191b1d;
-  --surface-raised: #232527;
-  --text: #f4f4f0;
-  --muted: #a7abae;
+  --bg: #111110;
+  --surface: #1b1b1a;
+  --surface-raised: #252523;
+  --canvas-texture: url("/textures/charcoal-grain.svg");
+  --text: #eeede8;
+  --muted: #aaa9a3;
   --border: #ffffff12;
-  --accent: #a9d9ca;
-  --purple: #9ab9f5;
-  --cyan: #86d5e5;
-  --mint: #a9dfb9;
-  --amber: #ecc28f;
-  --rose: #e0a0b7;
+  --accent: #bac6b8;
+  --purple: #aeb6c9;
+  --cyan: #a6bec4;
+  --mint: #b7c9b3;
+  --amber: #c6b38e;
+  --rose: #c3a7ae;
 }
 body {
-  background:
-    radial-gradient(ellipse at 90% 5%, #36544b13, transparent 35%), var(--bg);
+  background-color: var(--bg);
+  background-image: var(--canvas-texture);
+  background-size: 180px 180px;
 }
 .site-header {
-  background: #101112ed;
+  background: #111110f2;
 }
 .navigation {
-  background: #1b1d1e;
+  background: #20201e;
 }
 .navigation a {
   color: #a9afb0;
 }
 .navigation a.active {
-  background: #a9d9ca16;
-  color: #bce3d8;
+  background: #ffffff08;
+  color: var(--text);
 }
 .wordmark span {
-  background: linear-gradient(100deg, var(--cyan), var(--mint), var(--amber));
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--muted);
 }
 .hero:before {
-  background: radial-gradient(ellipse at 80% 40%, #6994a20b, transparent 65%);
+  background: none;
 }
 h1 > span {
-  background-image: linear-gradient(
-    100deg,
-    #95d8e8 0%,
-    #a2d8b6 45%,
-    #e6bd8b 85%
-  );
+  background: none;
+  color: #bdbbb2;
+  -webkit-text-fill-color: currentColor;
 }
 .hero-copy strong {
   color: #e4e8e5;
@@ -1544,10 +1541,10 @@ h1 > span {
   color: var(--amber);
 }
 .button-primary {
-  background: linear-gradient(110deg, #b3ddc6, #97ced9);
-  color: #172421;
-  border-color: #c2e9dc80;
-  box-shadow: 0 4px 20px #9be2c00b;
+  background: #d2d0c5;
+  color: #191a18;
+  border-color: #dedcd2;
+  box-shadow: 0 2px 0 #0004;
 }
 .button-secondary {
   background: #ffffff03;
@@ -1577,16 +1574,16 @@ h1 > span {
   color: var(--mint);
 }
 .project-filters {
-  background: #1c1e20;
+  background: #20201e;
 }
 .project-filters button[aria-pressed="true"] {
-  background: #abd6c518;
-  color: #c2e2d4;
+  background: #ffffff0e;
+  color: var(--text);
 }
 .project-card {
   --project-accent: var(--cyan);
-  background: linear-gradient(150deg, #222628, #181b1d);
-  border-color: #a6d6e51c;
+  background: var(--surface);
+  border-color: var(--border);
 }
 .project-card[data-project="hnsw"] {
   --project-accent: var(--mint);
@@ -1652,10 +1649,12 @@ h1 > span {
   background: color-mix(in srgb, var(--project-accent) 12%, transparent);
 }
 .skills-section {
-  background: #141617;
+  background-color: #151514;
+  background-image: var(--canvas-texture);
+  background-size: 180px 180px;
 }
 .skill-card {
-  background: #1b1e20;
+  background: var(--surface);
 }
 .skill-card:nth-child(1) {
   --skill-accent: var(--cyan);
@@ -1706,23 +1705,23 @@ h1 > span {
   margin: 8px 0 0;
 }
 .contact-card {
-  background:
-    radial-gradient(ellipse at 10% 110%, #80b4c014, transparent 65%),
-    radial-gradient(ellipse at 90% 110%, #c7ae8214, transparent 65%), #191d1d;
-  border-color: #bed9cd24;
+  background-color: var(--surface);
+  background-image: var(--canvas-texture);
+  background-size: 180px 180px;
+  border-color: var(--border);
 }
 .contact-card h2 > span {
-  background: linear-gradient(90deg, var(--cyan), var(--mint), var(--amber));
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: none;
+  color: #bdbbb2;
+  -webkit-text-fill-color: currentColor;
 }
 .contact-email {
   color: #9baba2;
 }
 .project-dialog {
-  border-color: #c9dfd130;
+  border-color: #ffffff26;
   width: min(850px, calc(100% - 32px));
-  background: #191d1e;
+  background: var(--surface);
 }
 .project-dialog::backdrop {
   background: #060808c9;
@@ -1819,14 +1818,8 @@ h1 > span {
   inset: 0;
   border: 1px solid color-mix(in srgb, var(--layer-color) 65%, transparent);
   border-radius: 12px;
-  background: linear-gradient(
-    130deg,
-    color-mix(in srgb, var(--layer-color) 17%, #172022),
-    #182022e8
-  );
-  box-shadow:
-    inset 0 0 35px color-mix(in srgb, var(--layer-color) 9%, transparent),
-    0 0 20px #0002;
+  background: #252523;
+  box-shadow: inset 0 1px 0 #ffffff08, 0 12px 24px #0003;
   padding: 19px;
   backface-visibility: hidden;
 }
@@ -1850,7 +1843,7 @@ h1 > span {
   height: 12px;
   transform-origin: top;
   transform: rotateX(-90deg);
-  background: color-mix(in srgb, var(--layer-color) 16%, #141b1b);
+  background: #1a1a18;
   border: 1px solid color-mix(in srgb, var(--layer-color) 35%, transparent);
   border-radius: 0 0 5px 5px;
 }
@@ -1862,7 +1855,7 @@ h1 > span {
   width: 12px;
   transform-origin: left;
   transform: rotateY(90deg);
-  background: #1a2525;
+  background: #20201e;
   border: 1px solid color-mix(in srgb, var(--layer-color) 28%, transparent);
 }
 .layer-circuit {
@@ -1953,7 +1946,7 @@ h1 > span {
   left: 50%;
   transform: translateX(-50%);
   padding: 8px 15px 8px 8px;
-  background: #202625;
+  background: #252523;
   border: 1px solid #c3e0ce1f;
   border-radius: 40px;
   white-space: nowrap;
@@ -2339,9 +2332,9 @@ h1 > span {
   border-color: #a9d9ca45;
 }
 .skills-filters button[aria-pressed="true"] {
-  background: #a9d9ca14;
-  border-color: #a9d9ca50;
-  color: #c6e9dc;
+  background: #ffffff0b;
+  border-color: #bac6b845;
+  color: var(--text);
 }
 .skills-count {
   font: 8px var(--mono);
@@ -2360,7 +2353,7 @@ h1 > span {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 22px;
-  background: linear-gradient(140deg, #202426, #191c1e);
+  background: var(--surface);
   transition:
     border-color 0.25s,
     transform 0.25s;

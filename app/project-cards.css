@@ -69,7 +69,7 @@
   line-height: 20px;
   border: 1px solid #ffffff18;
   border-radius: 7px;
-  background: #242b2b;
+  background: #292927;
   box-shadow: 0 3px 0 #0c1111;
   transform: perspective(500px) translateY(0) rotateX(0);
   transition:
@@ -81,14 +81,14 @@
   flex: 1;
   color: var(--project-accent);
   border-color: color-mix(in srgb, var(--project-accent) 25%, transparent);
-  background: color-mix(in srgb, var(--project-accent) 7%, #192021);
+  background: #262624;
 }
 .project-action:hover {
   transform: perspective(500px) translateY(-3px) rotateX(7deg);
   box-shadow:
     0 6px 0 #0c1111,
     0 10px 16px #0003;
-  background: #2b3533;
+  background: #32322f;
 }
 .project-action:active {
   transform: perspective(500px) translateY(2px) rotateX(-3deg);

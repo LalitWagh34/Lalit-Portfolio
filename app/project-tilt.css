@@ -39,7 +39,7 @@
   pointer-events: none;
   background: radial-gradient(
     circle at var(--card-light-x) var(--card-light-y),
-    color-mix(in srgb, var(--project-accent) 13%, transparent),
+    #ffffff08,
     transparent 60%
   );
   opacity: 0;

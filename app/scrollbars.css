@@ -1,8 +1,8 @@
 /* Shared scrollbar treatment for the document, dialogs, and scrollable diagrams. */
 :root {
-  --scrollbar-track: #141819;
-  --scrollbar-thumb: #596f66;
-  --scrollbar-thumb-hover: #92b7a5;
+  --scrollbar-track: #161615;
+  --scrollbar-thumb: #66665e;
+  --scrollbar-thumb-hover: #939389;
   scrollbar-gutter: stable;
 }
 * {
@@ -32,7 +32,7 @@
     margin-block: 8px;
   }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #637f72, #415a52);
+    background: var(--scrollbar-thumb);
     border: 3px solid var(--scrollbar-track);
     border-radius: 999px;
     min-height: 40px;
@@ -43,7 +43,7 @@
     border-width: 2px;
   }
   ::-webkit-scrollbar-thumb:active {
-    background: #b3d7c6;
+    background: #bab9ae;
   }
   ::-webkit-scrollbar-button {
     display: none;
