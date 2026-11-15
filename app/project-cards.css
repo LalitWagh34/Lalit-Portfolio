@@ -70,12 +70,6 @@
   border: 1px solid #ffffff18;
   border-radius: 7px;
   background: #292927;
-  box-shadow: 0 3px 0 #0c1111;
-  transform: perspective(500px) translateY(0) rotateX(0);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
 }
 .project-action-primary {
   flex: 1;
@@ -83,42 +77,9 @@
   border-color: color-mix(in srgb, var(--project-accent) 25%, transparent);
   background: #262624;
 }
-.project-action:hover {
-  transform: perspective(500px) translateY(-3px) rotateX(7deg);
-  box-shadow:
-    0 6px 0 #0c1111,
-    0 10px 16px #0003;
-  background: #32322f;
-}
-.project-action:active {
-  transform: perspective(500px) translateY(2px) rotateX(-3deg);
-  box-shadow: 0 1px 0 #0c1111;
-}
-.project-action svg {
-  transition: transform 0.2s ease;
-}
-.project-action-primary:hover svg {
-  transform: translate(2px, -2px);
-}
 .simple-project-dialog .dialog-actions {
   margin-top: 28px;
   gap: 14px;
-}
-.simple-project-dialog .dialog-actions .button {
-  box-shadow: 0 4px 0 #080e0d;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-.simple-project-dialog .dialog-actions .button:hover {
-  transform: perspective(600px) translateY(-3px) rotateX(6deg);
-  box-shadow:
-    0 7px 0 #080e0d,
-    0 12px 20px #0003;
-}
-.simple-project-dialog .dialog-actions .button:active {
-  transform: translateY(2px);
-  box-shadow: 0 1px 0 #080e0d;
 }
 .project-byline {
   display: flex;
@@ -161,21 +122,6 @@
     gap: 12px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .project-action,
-  .project-action svg,
-  .simple-project-dialog .dialog-actions .button {
-    transition: none;
-  }
-  .project-action:hover,
-  .project-action:active,
-  .simple-project-dialog .dialog-actions .button:hover,
-  .simple-project-dialog .dialog-actions .button:active,
-  .project-action-primary:hover svg {
-    transform: none;
-  }
-}
-
 @media (max-width: 760px) {
   .project-toolbar {
     flex-direction: column;

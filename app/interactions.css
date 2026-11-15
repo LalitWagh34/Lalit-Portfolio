@@ -86,3 +86,53 @@
     animation: none;
   }
 }
+
+/* Shared tactile controls. Individual translate preserves the cards' 3D transforms. */
+:root {
+  --control-motion-duration: 140ms;
+  --control-motion-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --control-edge: #0006;
+}
+:is(button, .pressable) {
+  translate: 0 0;
+  scale: 1;
+  touch-action: manipulation;
+  transition:
+    translate var(--control-motion-duration) var(--control-motion-ease),
+    scale var(--control-motion-duration) var(--control-motion-ease),
+    box-shadow var(--control-motion-duration) ease,
+    background-color var(--control-motion-duration) ease,
+    border-color var(--control-motion-duration) ease,
+    color var(--control-motion-duration) ease;
+}
+:is(.button, .project-action, .github-link, .icon-button) {
+  box-shadow: 0 3px 0 var(--control-edge), inset 0 1px 0 #ffffff08;
+}
+@media (hover: hover) and (pointer: fine) {
+  :is(button, .pressable):not(:disabled, [aria-disabled="true"]):hover {
+    translate: 0 -1px;
+  }
+  :is(.button, .project-action, .github-link, .icon-button):not(:disabled, [aria-disabled="true"]):hover {
+    box-shadow: 0 4px 0 var(--control-edge), inset 0 1px 0 #ffffff0d;
+  }
+  .project-action:hover {
+    background-color: #32322f;
+  }
+}
+:is(button, .pressable):not(:disabled, [aria-disabled="true"]):is(:active, [data-pressed="true"]) {
+  translate: 0 2px;
+  scale: 0.985;
+  transition-duration: 80ms;
+}
+:is(.button, .project-action, .github-link, .icon-button):not(:disabled, [aria-disabled="true"]):is(:active, [data-pressed="true"]) {
+  box-shadow: 0 1px 0 var(--control-edge), inset 0 1px 2px #0002;
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(button, .pressable),
+  :is(button, .pressable):not(:disabled, [aria-disabled="true"]):hover,
+  :is(button, .pressable):not(:disabled, [aria-disabled="true"]):is(:active, [data-pressed="true"]) {
+    translate: none;
+    scale: none;
+    transition: none;
+  }
+}

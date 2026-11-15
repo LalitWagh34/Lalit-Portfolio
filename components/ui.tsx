@@ -40,7 +40,7 @@ export function LinkButton({
   return (
     <a
       className={
-        "button " + (secondary ? "button-secondary" : "button-primary")
+        "button pressable " + (secondary ? "button-secondary" : "button-primary")
       }
       href={href}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}

@@ -52,7 +52,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <a
-          className="github-link"
+          className="github-link pressable"
           href={profile.resume}
           target="_blank"
           rel="noreferrer"

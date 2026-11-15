@@ -59,7 +59,7 @@ function ProjectCard({
             View project <ArrowUpRight size={16} />
           </button>
           <a
-            className="project-action"
+            className="project-action pressable"
             href={profile.github + "/" + project.repo}
             target="_blank"
             rel="noreferrer"

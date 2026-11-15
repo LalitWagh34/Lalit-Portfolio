@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PressFeedback } from "@/components/press-feedback";
 import "./globals.css";
 import "./typography.css";
 import "./scrollbars.css";
@@ -22,7 +23,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>{children}</body>
+      <body>
+        <PressFeedback />
+        {children}
+      </body>
     </html>
   );
 }
